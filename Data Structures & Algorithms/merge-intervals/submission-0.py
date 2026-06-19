@@ -1,0 +1,16 @@
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key=lambda x: x[0])
+
+        merged = []
+
+        for s, e in intervals:
+            if not merged:
+                merged.append([s,e])
+            if merged[-1][1] >= s:
+                merged[-1][1] = max(merged[-1][1], e)
+            if merged[-1][1] < s:
+                merged.append([s,e])
+            
+        return merged
+        
