@@ -1,0 +1,44 @@
+class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        rows = len(board)
+        cols = len(board[0])
+
+        if not board:
+            return None
+
+        def dfs(r, c):
+            if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != "O":
+                return 
+
+            board[r][c] = "Y"
+
+            dfs(r-1, c)
+            dfs(r+1, c)
+            dfs(r, c-1)
+            dfs(r, c+1)
+
+
+        for r in range(rows):
+            for c in [0, cols-1]:
+                dfs(r, c)
+
+        for c in range(cols):
+            for r in [0, rows-1]:
+                dfs(r, c)
+
+        for r in range(rows):
+            for c in range(cols):
+                if board[r][c] == "O":
+                     board[r][c] = "X"
+
+                if board[r][c] == "Y":
+                     board[r][c] = "O"
+
+
+
+
+            
+
+
+        
+        
